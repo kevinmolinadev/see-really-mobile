@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1043050284842",
+    "project_id": "see-really",
+    "storage_bucket": "see-really.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043050284842:android:ef98dfa29cfa2cf0fb4053",
+        "android_client_info": {
+          "package_name": "com.example.see_really"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnwzXBLrwThYYate4YZ1Qx2bMrncaNj2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
