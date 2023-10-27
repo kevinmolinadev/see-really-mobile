@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:see_really/firebase/videos.dart';
 import 'package:see_really/models/category_model.dart';
+import 'package:see_really/models/videos_model.dart';
+import 'package:see_really/screens/add_video.dart';
 import 'package:see_really/widgets/banner_item.dart';
+import 'package:see_really/widgets/video_item.dart';
 
 class Category extends StatefulWidget {
   final CategoryModel category;
@@ -10,6 +14,18 @@ class Category extends StatefulWidget {
 }
 
 class _Category extends State<Category> {
+  List<VideosModel> videos = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchVideos();
+  }
+
+  Future<void> fetchVideos() async {
+    videos = await getVideosByCategory(widget.category.title.toLowerCase());
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +51,30 @@ class _Category extends State<Category> {
               ]),
           backgroundColor: Colors.black,
         ),
-        body: Column(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: 250,
-              child: BannerItem(
-                item: widget.category,
-                isCategory: true,
-              ),
-            )
-          ],
+        body: Column(children: [
+          SizedBox(
+            width: double.infinity,
+            height: 250,
+            child: BannerItem(
+              item: widget.category,
+              isCategory: true,
+            ),
+          ),
+          Expanded(
+              child: GridView.count(
+                  padding: const EdgeInsets.all(5),
+                  childAspectRatio: 16 / 12.5,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  crossAxisCount: 2,
+                  children: videos
+                      .map((e) => VideoItem(item: e, isCategory: true))
+                      .toList()))
+        ]),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddVideoForm())),
+          child: Icon(Icons.add),
         ));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:see_really/firebase/categories.dart';
 import 'package:see_really/models/category_model.dart';
+import 'package:see_really/screens/add_video.dart';
 import 'package:see_really/widgets/banner_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:see_really/widgets/category_item.dart';
@@ -61,8 +62,13 @@ class _Home extends State<Home> {
                 child: ListView.builder(
                     itemCount: categories.length,
                     itemBuilder: (context, index) =>
-                        CategoryItem(category: categories[index].title)))
+                        CategoryItem(item: categories[index])))
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddVideoForm())),
+          child: const Icon(Icons.add),
         ));
   }
 }
