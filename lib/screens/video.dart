@@ -159,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Align(
@@ -177,8 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AddVideoForm())),
-            child: Icon(Icons.add),
+                MaterialPageRoute(builder: (context) => const AddVideoForm())),
+            child: const Icon(Icons.add),
           )),
     );
   }

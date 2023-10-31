@@ -50,20 +50,23 @@ class _Home extends State<Home> {
               ]),
           backgroundColor: Colors.black,
         ),
-        body: Column(
-          children: [
-            CarouselSlider(
-                items: categories
-                    .map((e) => BannerItem(item: e, isCategory: false))
-                    .toList(),
-                options: CarouselOptions(
-                    autoPlay: true, padEnds: false, viewportFraction: 1.0)),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: categories.length,
-                    itemBuilder: (context, index) =>
-                        CategoryItem(item: categories[index])))
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              CarouselSlider(
+                  items: categories
+                      .map((e) => BannerItem(item: e, isCategory: false))
+                      .toList(),
+                  options: CarouselOptions(
+                      autoPlay: true, padEnds: false, viewportFraction: 1.0)),
+              ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) =>
+                      CategoryItem(item: categories[index]))
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.push(context,
